@@ -53,9 +53,14 @@ public class UserDaoImpl implements UserDao {
             ps.setString(2, user.getName());
             ps.setString(3, passwordMD5);
             ps.executeUpdate();
+            rs = ps.getGeneratedKeys();
+            if (rs.next()){
+                user.setId(rs.getInt(1));
+                return user;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return findByName(user.getName());
+        return null;
     }
 }
