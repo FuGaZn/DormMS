@@ -1,4 +1,4 @@
-package com.demo.servlet;
+package com.demo.servlet.login;
 
 import com.demo.dao.UserDao;
 import com.demo.dao.impl.UserDaoImpl;
@@ -45,9 +45,6 @@ public class LoginServlet extends HttpServlet {
             resp.addCookie(cookie1);
             req.getSession().setAttribute("user", user);
             req.getSession().setAttribute("access_set", accessSet);
-            for (Access access: accessSet){
-                System.out.println(access);
-            }
             resp.sendRedirect("/user/home.jsp");
         }
     }

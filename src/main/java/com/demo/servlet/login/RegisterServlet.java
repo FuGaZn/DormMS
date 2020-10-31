@@ -1,4 +1,4 @@
-package com.demo.servlet;
+package com.demo.servlet.login;
 
 import com.demo.dao.UserDao;
 import com.demo.dao.impl.UserDaoImpl;
