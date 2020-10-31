@@ -1,18 +1,28 @@
 package com.demo.model;
 
+import java.util.Objects;
+
 public class Access {
-    int nid;
+    int aid;
     String name;
     int status;
     int level;
-    String title;
+    String module;
 
-    public int getNid() {
-        return nid;
+    public String getModule() {
+        return module;
     }
 
-    public void setNid(int nid) {
-        this.nid = nid;
+    public void setModule(String module) {
+        this.module = module;
+    }
+
+    public int getAid() {
+        return aid;
+    }
+
+    public void setAid(int aid) {
+        this.aid = aid;
     }
 
     public String getName() {
@@ -39,11 +49,21 @@ public class Access {
         this.level = level;
     }
 
-    public String getTitle() {
-        return title;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Access access = (Access) o;
+        if (access.getAid() == aid)
+            return true;
+        return status == access.status &&
+                level == access.level &&
+                name.equals(access.name);
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, status, level);
     }
 }

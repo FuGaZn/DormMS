@@ -5,6 +5,7 @@ import com.demo.model.Role;
 import com.demo.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
     User getUser(String name);
@@ -22,7 +23,7 @@ public interface UserService {
      * @param uid
      * @return
      */
-    List<Role> getAllRoles(int uid);
+    Set<Role> getAllRoles(int uid);
 
     /**
      * 移除用户的某个角色
@@ -39,5 +40,5 @@ public interface UserService {
      * @param uid
      * @return
      */
-    List<Access> getAllAccesses(int uid);
+    Set<Access> getAllAccesses(int uid);
 }

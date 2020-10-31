@@ -4,15 +4,17 @@ import com.demo.model.Access;
 import com.demo.model.Role;
 
 import java.util.List;
+import java.util.Set;
 
 public interface RoleService {
     /**
      * 给角色赋予某个权限
      * @param rid
      * @param aid
+     * @param module
      * @return
      */
-    boolean giveAccess(int rid, int aid);
+    boolean giveAccess(int rid, int aid, String module);
 
     /**
      * 从某个角色移除某个权限
@@ -24,13 +26,13 @@ public interface RoleService {
 
     Role getRole(int rid);
 
-    boolean addRole(Role role);
+    int addRole(Role role);
 
     /**
      * 获取角色所属的所有权限
-     * @param aid
+     * @param rid
      * @return
      */
-    List<Access> getAllAccesses(int aid);
+    Set<Access> getAllAccesses(int rid);
 }
 

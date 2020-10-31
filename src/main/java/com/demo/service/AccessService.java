@@ -5,5 +5,5 @@ import com.demo.model.Access;
 public interface AccessService {
     boolean addAccess(Access access);
 
-    boolean deleteAccess(int aid);
+   // boolean deleteAccess(int aid);
 }
