@@ -12,5 +12,4 @@ public class AccessServiceImpl implements AccessService {
         daoFactory.getAccessDao().addAccess(access);
         return true;
     }
-
 }

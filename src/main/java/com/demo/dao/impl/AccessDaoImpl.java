@@ -12,20 +12,20 @@ public class AccessDaoImpl implements AccessDao {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "insert into access(aid, name, status, 'level') values (?,?,?,?)";
+        String sql = "insert into access(name, status, 'level') values (?,?,?)";
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, 1);
-            ps.setString(2,access.getName());
-            ps.setInt(3, access.getStatus());
-            ps.setInt(4, access.getLevel());
+            ps.setString(1,access.getName());
+            ps.setInt(2, access.getStatus());
+            ps.setInt(3, access.getLevel());
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
             while (rs.next()){
                 return rs.getInt(1);
             }
         }catch (SQLException e){
+            DBUtils.close(rs, ps,conn);
             e.printStackTrace();
         }
         return 0;
@@ -51,6 +51,7 @@ public class AccessDaoImpl implements AccessDao {
                 return access;
             }
         }catch (SQLException e){
+            DBUtils.close(rs, ps,conn);
             e.printStackTrace();
         }
         return null;

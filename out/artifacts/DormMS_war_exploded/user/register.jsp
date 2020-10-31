@@ -15,7 +15,6 @@
 <div>
 
 </div>
-<h1>
     <h1>注册</h1>
     <form action="/register" method="post">
         <input type="text" name="username" placeholder="输入姓名">

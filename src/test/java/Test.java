@@ -7,12 +7,12 @@ import com.demo.dao.impl.UserDaoImpl;
 import com.demo.model.Role;
 import com.demo.model.User;
 import com.demo.util.MyMD5;
+import com.demo.util.factory.DaoFactory;
+import com.demo.util.factory.impl.DaoFactoryImpl;
 
 public class Test {
     @org.junit.Test
     public void test(){
-        RoleUserDao roleUserDao = new RoleUserDaoImpl();
-        roleUserDao.deleteRoleUser(3,1);
-
+        DaoFactory factory = new DaoFactoryImpl();
     }
 }

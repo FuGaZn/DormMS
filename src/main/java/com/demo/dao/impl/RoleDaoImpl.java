@@ -12,19 +12,19 @@ public class RoleDaoImpl implements RoleDao {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "insert into role(rid, name,status) values(?,?,?)";
+        String sql = "insert into role(name,status) values(?,?)";
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,1);
-            ps.setString(2, role.getName());
-            ps.setInt(3, role.getStatus());
+            ps.setString(1, role.getName());
+            ps.setInt(2, role.getStatus());
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
             while (rs.next()){
                 return rs.getInt(1);
             }
         }catch (SQLException e){
+            DBUtils.close(rs, ps,conn);
             e.printStackTrace();
         }
         return 0;
@@ -39,6 +39,7 @@ public class RoleDaoImpl implements RoleDao {
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql);
+            ps.setInt(1,id);
             rs = ps.executeQuery();
             while (rs.next()){
                 Role role = new Role();
@@ -48,6 +49,7 @@ public class RoleDaoImpl implements RoleDao {
                 return role;
             }
         }catch (SQLException e){
+            DBUtils.close(rs, ps,conn);
             e.printStackTrace();
         }
         return null;
@@ -67,6 +69,7 @@ public class RoleDaoImpl implements RoleDao {
             ps.setInt(3, role.getRid());
             ps.executeUpdate();
         }catch (SQLException e){
+            DBUtils.close(rs, ps,conn);
             e.printStackTrace();
         }
         return false;

@@ -66,4 +66,15 @@ public class Access {
     public int hashCode() {
         return Objects.hash(name, status, level);
     }
+
+    @Override
+    public String toString() {
+        return "Access{" +
+                "aid=" + aid +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                ", level=" + level +
+                ", module='" + module + '\'' +
+                '}';
+    }
 }

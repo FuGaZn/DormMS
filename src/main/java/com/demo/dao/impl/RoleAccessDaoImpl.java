@@ -16,16 +16,16 @@ public class RoleAccessDaoImpl implements RoleAccessDao {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "insert into role_access(raid, role_id, access_id,module) values(?,?,?,?)";
+        String sql = "insert into role_access(role_id, access_id,module) values(?,?,?)";
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setInt(1,1);
-            ps.setInt(2, rid);
-            ps.setInt(3, aid);
-            ps.setString(4,module);
+            ps.setInt(1, rid);
+            ps.setInt(2, aid);
+            ps.setString(3,module);
             ps.executeUpdate();
         }catch (SQLException e){
+            DBUtils.close(rs, ps,conn);
             e.printStackTrace();
         }
         return 0;
@@ -40,6 +40,7 @@ public class RoleAccessDaoImpl implements RoleAccessDao {
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql);
+            ps.setInt(1, rid);
             rs = ps.executeQuery();
             List<Integer> list = new ArrayList<>();
             while (rs.next()){
@@ -47,6 +48,7 @@ public class RoleAccessDaoImpl implements RoleAccessDao {
             }
             return list;
         }catch (SQLException e){
+            DBUtils.close(rs, ps,conn);
             e.printStackTrace();
         }
         return null;
@@ -65,6 +67,7 @@ public class RoleAccessDaoImpl implements RoleAccessDao {
             ps.setInt(2,rid);
             ps.executeUpdate();
         }catch (SQLException e){
+            DBUtils.close(rs, ps,conn);
             e.printStackTrace();
         }
         return false;

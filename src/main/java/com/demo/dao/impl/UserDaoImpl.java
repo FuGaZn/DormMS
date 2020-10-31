@@ -30,6 +30,7 @@ public class UserDaoImpl implements UserDao {
             else
                 return null;
         } catch (SQLException e) {
+            DBUtils.close(rs, ps,conn);
             e.printStackTrace();
         }
         return null;
@@ -41,13 +42,12 @@ public class UserDaoImpl implements UserDao {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "insert into users(uid, uname, passwd) values (?,?,?)";
+        String sql = "insert into users(uname, passwd) values (?,?)";
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, user.getId());
-            ps.setString(2, user.getName());
-            ps.setString(3, passwordMD5);
+            ps.setString(1, user.getName());
+            ps.setString(2, passwordMD5);
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
             if (rs.next()){
@@ -55,6 +55,7 @@ public class UserDaoImpl implements UserDao {
                 return user;
             }
         } catch (SQLException e) {
+            DBUtils.close(rs, ps,conn);
             e.printStackTrace();
         }
         return null;
