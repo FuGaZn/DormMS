@@ -27,7 +27,7 @@
         for (Access access: accessSet){
             if (access.getStatus() == 1){
                 System.out.println(access);
-                accessAbleSet.add(access.getName());
+                accessAbleSet.add(access.getKey());
             }
         }
     }
@@ -36,14 +36,14 @@
 <body>
 <h1>RBAC</h1>
 <ul>
-    <c:if test='<%=accessAbleSet.contains("宿舍信息管理")==true%>'>
-        <li><a href="">宿舍信息管理</a></li>
+    <c:if test='<%=accessAbleSet.contains("dorminfo")==true%>'>
+        <li><a href="/m/dorminfo.jsp">宿舍信息管理</a></li>
     </c:if>
-    <c:if test='<%=accessAbleSet.contains("床位状态管理")==true%>'>
-        <li><a href="">床位状态管理</a></li>
+    <c:if test='<%=accessAbleSet.contains("bedsituation")==true%>'>
+        <li><a href="/m/bedsituation.jsp">床位状态管理</a></li>
     </c:if>
-    <c:if test='<%=accessAbleSet.contains("学生白名单管理")==true%>'>
-        <li><a href="">学生白名单管理</a></li>
+    <c:if test='<%=accessAbleSet.contains("stulist")==true%>'>
+        <li><a href="/m/stulist.jsp">学生白名单管理</a></li>
     </c:if>
 </ul>
 

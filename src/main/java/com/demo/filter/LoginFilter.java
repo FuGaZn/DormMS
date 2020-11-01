@@ -26,7 +26,6 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("filter");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         if (!request.getRequestURI().equals("/") && !request.getRequestURI().equals("/index.jsp") && !request.getRequestURI().equals("/user/register.jsp")) {

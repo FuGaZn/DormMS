@@ -31,11 +31,9 @@ public class LoginServlet extends HttpServlet {
         String name = req.getParameter("username");
         String password = MyMD5.encrypt(req.getParameter("password"));
         User user = serviceFactory.getUserService().getUser(name);
-        if (user == null){
-            resp.sendRedirect("/error/userNotFound.jsp");
-        }else if(!user.getPassword().equals(password)){
-            resp.sendRedirect("/error/passwdError.jsp");
-        }else{
+        if (user == null || !user.getPassword().equals(password)) {
+            resp.sendRedirect("/error/loginError.jsp");
+        } else{
             Set<Access> accessSet = serviceFactory.getUserService().getAllAccesses(user.getId());
             Cookie cookie = new Cookie("autoLogin", name);
             Cookie cookie1 = new Cookie("password", password);

@@ -4,11 +4,10 @@ import com.demo.model.Access;
 import com.demo.model.Role;
 import com.demo.model.User;
 
-import java.util.List;
 import java.util.Set;
 
 public interface UserService {
-    User getUser(String name);
+     User getUser(String name);
 
     /**
      * 为用户赋予某个角色

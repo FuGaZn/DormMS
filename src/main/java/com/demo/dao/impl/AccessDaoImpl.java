@@ -12,13 +12,14 @@ public class AccessDaoImpl implements AccessDao {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "insert into access(name, status, 'level') values (?,?,?)";
+        String sql = "insert into access(name, status, level, key) values (?,?,?,?)";
         try {
             conn = DBUtils.getConnection();
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1,access.getName());
             ps.setInt(2, access.getStatus());
             ps.setInt(3, access.getLevel());
+            ps.setString(4, access.getKey());
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
             while (rs.next()){
@@ -48,6 +49,7 @@ public class AccessDaoImpl implements AccessDao {
                 access.setName(rs.getString(2));
                 access.setStatus(rs.getInt(3));
                 access.setLevel(rs.getInt(4));
+                access.setKey(rs.getString(5));
                 return access;
             }
         }catch (SQLException e){

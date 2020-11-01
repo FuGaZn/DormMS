@@ -1,7 +1,5 @@
 package com.demo.servlet.login;
 
-import com.sun.deploy.net.HttpRequest;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,3 +14,4 @@ public class LogoutServlet extends HttpServlet {
         resp.sendRedirect("/");
     }
 }
+
